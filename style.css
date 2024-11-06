@@ -1,0 +1,958 @@
+/* -------------------------------------------
+   Configuration Générale du Site
+-------------------------------------------- */
+body {
+    background-color: #2E3138; /* Fond principal du site */
+    color: #E8EAE8; /* Texte principal */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Couleurs principales */
+:root {
+    --bleu-fonce: #181B21;
+    --bleu-moins-fonce: #2E3138;
+    --orange: #F4812F;
+    --noir: #393635;
+    --blanc: #E8EAE8;
+}
+
+/* -------------------------------------------
+   Styles de l'En-tête (Header)
+-------------------------------------------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--bleu-fonce);
+    color: var(--blanc);
+}
+
+header .logo a {
+    color: var(--blanc);
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Menu Burger */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 1001; /* Assurez-vous que l'icône est au-dessus du menu */
+}
+
+.burger-menu span {
+    height: 4px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: 0.3s;
+    margin-bottom: 4px;
+}
+
+/* Lorsque le menu est ouvert, changer l'icône burger en croix */
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg);
+    position: relative;
+    top: 8px;
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    position: relative;
+    top: -8px;
+}
+
+/* Overlay Menu */
+.menu {
+    position: fixed;
+    top: 0;
+    right: -550px; /* Menu hors écran à droite */
+    width: 250px;
+    height: 100%;
+    background-color: #181B21;
+    color: white;
+    padding: 20px;
+    box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-items li {
+    margin: 20px 0;
+}
+
+.menu-items li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Lorsque le menu est actif, il glisse vers la gauche */
+.menu.active {
+    right: 0;
+}
+
+/* Styles pour afficher correctement les liens du menu */
+.menu-items li a:hover {
+    color: #F4812F; /* Changer la couleur au survol */
+}
+
+/* Styles sur mobile */
+@media screen and (max-width: 375px) {
+    /* Menu burger visible sur mobile */
+    .burger-menu {
+        display: block;
+    }
+
+    .menu-items {
+        display: block;
+    }
+}
+
+/* -------------------------------------------
+   Page d'Accueil : Contenu Principal
+-------------------------------------------- */
+
+.page-contenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centre les éléments horizontalement */
+    justify-content: flex-start;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.article-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grille responsive avec des cards */
+    gap: 30px;
+    width: 100%;
+}
+
+.article-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: var(--orange);
+    text-transform: capitalize;
+}
+
+.article-content li {
+    background-color: var(--bleu-fonce);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.article-content li:hover {
+    transform: translateY(-5px); /* Légère élévation au survol */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    margin-top: 20px;
+    color: var(--blanc);
+}
+
+.post-meta p {
+    margin: 5px 0;
+}
+
+.article-separator {
+    border: 0;
+    height: 2px;
+    background-color: var(--orange);
+    opacity: 0.7; /* Opacité de 70% pour la barre de séparation */
+    margin: 20px 0;
+}
+
+.post-content {
+    color: var(--blanc);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* Gestion des erreurs (pas d'articles trouvés) */
+.page-contenu p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--blanc);
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .article-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .article-title {
+        font-size: 1.6rem;
+    }
+
+    .article-content li {
+        padding: 15px;
+    }
+
+    .post-meta {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* -------------------------------------------
+   Footer - Pied de page
+-------------------------------------------- */
+footer {
+    background-color: var(--bleu-fonce);
+    color: var(--blanc);
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.footer-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-menu li {
+    display: inline-block;
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: var(--blanc);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-menu a:hover {
+    color: var(--orange); /* Changer la couleur au survol */
+}
+
+.footer-extra-pages {
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.footer-extra-pages li {
+    margin: 0;
+}
+
+.footer-extra-pages a {
+    text-decoration: none;
+    color: var(--blanc);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-extra-pages a:hover {
+    color: var(--orange); /* Changer la couleur au survol */
+}
+
+footer p {
+    font-size: 0.9rem;
+    margin-top: 20px;
+    color: var(--blanc);
+}
+
+/* -------------------------------------------
+   Styles Responsives
+-------------------------------------------- */
+
+/* Mobile */
+@media screen and (max-width: 375px) {
+    /* Menu burger visible sur mobile */
+    .burger-menu {
+        display: block;
+    }
+
+    .menu-items {
+        display: block;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: var(--bleu-fonce);
+        z-index: 1000;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-nav {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        width: 100%;
+        position: relative;
+    }
+
+    .footer-nav a {
+        font-size: 14px;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+    footer {
+        position: static;
+    }
+
+    .footer-nav {
+        gap: 30px;
+    }
+}
+
+/* -------------------------------------------
+   Styles des Formulaires
+-------------------------------------------- */
+/* -------------------------------------------
+   Formulaire d'Inscription
+-------------------------------------------- */
+.account-form-container {
+    background-color: var(--bleu-fonce);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+    color: var(--blanc);
+}
+
+h1.page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--blanc);
+}
+
+/* Label pour les champs du formulaire */
+.account-form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--blanc);
+}
+
+/* Champs de texte (inputs) */
+.account-form-container input[type="text"],
+.account-form-container input[type="email"],
+.account-form-container input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--bleu-moins-fonce);
+    color: var(--blanc);
+}
+
+.account-form-container input[type="text"]:focus,
+.account-form-container input[type="email"]:focus,
+.account-form-container input[type="password"]:focus {
+    border-color: var(--orange);
+    outline: none;
+}
+
+.account-form-container .required {
+    color: #d32721; /* Rouge pour l'astérisque de champ obligatoire */
+}
+
+/* Case à cocher (acceptation des conditions) */
+.accept-terms {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.accept-terms input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.accept-terms a {
+    color: var(--orange);
+    text-decoration: none;
+}
+
+.accept-terms a:hover {
+    text-decoration: underline;
+}
+
+/* Bouton d'inscription */
+.account-form-container .btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--orange);
+    color: var(--blanc);
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.account-form-container .btn-submit:hover {
+    background-color: #c7641d; /* Teinte plus sombre lors du survol */
+}
+
+/* Gestion des messages d'erreur */
+.error {
+    color: #d32721;
+    background-color: rgba(211, 39, 33, 0.1);
+    padding: 10px;
+    border: 1px solid #d32721;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Responsivité pour mobile */
+@media screen and (max-width: 550px) {
+    .account-form-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    h1.page-title {
+        font-size: 1.6rem;
+    }
+
+    .account-form-container input[type="text"],
+    .account-form-container input[type="email"],
+    .account-form-container input[type="password"] {
+        padding: 10px;
+    }
+
+    .account-form-container .btn-submit {
+        padding: 12px;
+    }
+}
+
+/* -------------------------------------------
+   Page Détail Match (single-match.php)
+-------------------------------------------- */
+
+/* Conteneur principal de la page */
+.page-contenu {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    max-width: 550px;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+/* Article du match */
+.match {
+    background-color: var(--bleu-fonce);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* Image du match */
+.match-thumbnail {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.match-thumbnail img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Titre du match */
+.match-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--orange);
+    text-align: center;
+}
+
+/* Contenu principal du match */
+.content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--orange);
+    margin-bottom: 30px;
+}
+
+/* Section des équipes participantes */
+.match-teams {
+    margin-bottom: 30px;
+}
+
+.match-teams h3 {
+    font-size: 1.5rem;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.match-teams .team {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--bleu-fonce);
+    margin-top: 10px;
+}
+
+/* Section de la date et de l'heure */
+.match-date-time {
+    margin-bottom: 30px;
+}
+
+.match-date-time h3 {
+    font-size: 1.5rem;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.match-date-time p {
+    font-size: 1.1rem;
+    color: var(--bleu-fonce);
+}
+
+/* Section du type de match */
+.match-type {
+    margin-bottom: 30px;
+}
+
+.match-type h3 {
+    font-size: 1.5rem;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.match-type p {
+    font-size: 1.1rem;
+    color: var(--orange);
+}
+
+/* Section des résultats */
+.match-results {
+    margin-bottom: 30px;
+}
+
+.match-results h3 {
+    font-size: 1.5rem;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.match-results p {
+    font-size: 1.1rem;
+    color: var(--orange);
+}
+
+/* Section du statut du match */
+.match-status {
+    margin-bottom: 30px;
+}
+
+.match-status h3 {
+    font-size: 1.5rem;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.match-status p {
+    font-size: 1.1rem;
+    color: var(--orange);
+    font-weight: bold;
+}
+
+/* Responsivité */
+@media (max-width: 550px) {
+    .match-title {
+        font-size: 1.8rem;
+    }
+
+    .content {
+        font-size: 1rem;
+    }
+
+    .match-teams h3,
+    .match-date-time h3,
+    .match-type h3,
+    .match-results h3,
+    .match-status h3 {
+        font-size: 1.3rem;
+    }
+
+    .match-teams .team,
+    .match-date-time p,
+    .match-type p,
+    .match-results p,
+    .match-status p {
+        font-size: 1rem;
+    }
+}
+
+
+/* Bouton de détails de l'équipe */
+.team-details-btn {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    background-color: var(--orange);
+    color: var(--bleu-fonce);
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.team-details-btn:hover {
+    background-color: #c7641d;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.pagination a {
+    text-decoration: none;
+    background-color: var(--orange);
+    color: var(--bleu-fonce);
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #c7641d;
+}
+
+/* -------------------------------------------
+   Page Détail Équipe (single-equipes.php)
+-------------------------------------------- */
+/* Article de l'équipe */
+.equipe {
+    background-color: var(--blanc);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* Image de l'équipe */
+.equipe-thumbnail {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.equipe-thumbnail img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Titre de l'équipe */
+.equipe-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--bleu-fonce);
+    text-align: center;
+}
+
+/* Contenu principal de l'équipe */
+.content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--bleu-fonce);
+    margin-bottom: 30px;
+}
+
+/* Membres de l'équipe */
+.team-members {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: var(--bleu-fonce);
+    text-decoration: none;
+}
+
+.team-members p {
+    margin: 5px 0;
+    color: var(--orange);
+}
+
+/* Section des matchs de l'équipe */
+.team-matches {
+    margin-bottom: 30px;
+}
+
+.team-matches h3 {
+    font-size: 1.5rem;
+    color: var(--bleu-fonce);
+    margin-bottom: 10px;
+}
+
+.team-matches ul {
+    list-style-type: none;
+    padding-left: 0;
+    color: var(--orange);
+}
+
+.team-matches ul li {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.team-matches a {
+    text-decoration: none;
+    color: var(--orange);
+    font-weight: bold;
+}
+
+.team-matches a:hover {
+    text-decoration: underline;
+}
+
+/* Statistiques de l'équipe */
+.team-stats {
+    background-color: var(--bleu-fonce);
+    color: var(--bleu-fonce);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.team-stats h3 {
+    font-size: 1.5rem;
+    color: var(--bleu-fonce);
+    margin-bottom: 15px;
+}
+
+.stats-card {
+    background-color: var(--blanc);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.stats-card p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .equipe-title {
+        font-size: 1.8rem;
+    }
+
+    .content {
+        font-size: 1rem;
+    }
+
+    .team-matches h3,
+    .team-stats h3 {
+        font-size: 1.3rem;
+    }
+
+    .stats-card p {
+        font-size: 1rem;
+    }
+}
+
+/* -------------------------------------------
+   Page Tous les matchs (page de liste)
+-------------------------------------------- */
+
+
+/* Liste des matchs */
+.match-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* Carte de chaque match */
+.match-card {
+    background-color: var(--bleu-fonce);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.match-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Titre du match */
+.match-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--orange);
+    margin: 20px 20px 10px 20px;
+}
+
+/* Nom du tournoi */
+.tournament-name {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: var(--bleu-fonce);
+    margin-left: 20px;
+}
+
+/* Informations des équipes */
+.teams {
+    margin: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--bleu-fonce);
+}
+
+/* Texte d'une équipe */
+.team {
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Informations complémentaires (date, type, statut) */
+.match-info {
+    padding: 20px;
+    font-size: 1rem;
+    color: var(--blanc);
+    background-color: var(--orange);
+    margin-top: 20px;
+}
+
+/* Date et heure du match */
+.match-date {
+    margin-bottom: 10px;
+    color: var(--blanc);
+}
+.match-date-time p {
+    margin-bottom: 10px;
+    color: var(--blanc);
+}
+
+.match-teams .team {
+    color: var(--blanc);
+}
+
+/* Type de match */
+.match-type {
+    margin-bottom: 10px;
+}
+
+.match-type p {
+        color: var(--blanc);
+
+}
+
+/* Statut du match */
+.match-status {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.match-status span {
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: var(--blanc);
+    color: var(--blanc);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Bouton "Créer un nouveau match" */
+.button {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.button a {
+    padding: 12px 30px;
+    background-color: var(--bleu-moins-fonce);
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.button a:hover {
+    background-color: var(--bleu-moins-fonce);
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .match-card {
+        font-size: 0.9rem;
+    }
+
+    .match-title {
+        font-size: 1.5rem;
+    }
+
+    .teams {
+        font-size: 1rem;
+    }
+
+    .match-info {
+        padding: 15px;
+    }
+
+    .match-date, .match-type {
+        font-size: 0.9rem;
+    }
+
+    .match-status span {
+        font-size: 0.8rem;
+    }
+}
